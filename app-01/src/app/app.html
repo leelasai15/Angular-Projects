@@ -1,0 +1,28 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>Angular Fundamentals</h1>
+    <p>Explore basic features in individual practice components</p>
+  </header>
+
+  <nav class="nav-buttons">
+    <button [class.active]="currentView === 'data-binding'" (click)="setView('data-binding')">Data Binding</button>
+    <button [class.active]="currentView === 'directives'" (click)="setView('directives')">Built-in Directives</button>
+    <button [class.active]="currentView === 'pipes'" (click)="setView('pipes')">Built-in Pipes</button>
+    <button [class.active]="currentView === 'communication'" (click)="setView('communication')">Component Communication</button>
+  </nav>
+
+  <main class="content-area">
+    @if (currentView === 'data-binding') {
+      <app-data-binding></app-data-binding>
+    }
+    @if (currentView === 'directives') {
+      <app-built-in-directives></app-built-in-directives>
+    }
+    @if (currentView === 'pipes') {
+      <app-built-in-pipes></app-built-in-pipes>
+    }
+    @if (currentView === 'communication') {
+      <app-component-communication></app-component-communication>
+    }
+  </main>
+</div>

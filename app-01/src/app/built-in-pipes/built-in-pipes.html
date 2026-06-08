@@ -1,0 +1,35 @@
+<div class="pipes-container">
+  <h2>Built-in Pipes</h2>
+  
+  <div class="grid">
+    <div class="pipe-card">
+      <h3>String Formatting</h3>
+      <p><strong>Original:</strong> {{ textData }}</p>
+      <p><strong>Uppercase:</strong> {{ textData | uppercase }}</p>
+      <p><strong>Lowercase:</strong> {{ textData | lowercase }}</p>
+    </div>
+
+    <div class="pipe-card">
+      <h3>Date Formatting</h3>
+      <p><strong>Original:</strong> {{ currentDate }}</p>
+      <p><strong>Short Date:</strong> {{ currentDate | date:'shortDate' }}</p>
+      <p><strong>Full Date:</strong> {{ currentDate | date:'fullDate' }}</p>
+      <p><strong>Custom:</strong> {{ currentDate | date:'dd/MM/yyyy HH:mm' }}</p>
+    </div>
+
+    <div class="pipe-card">
+      <h3>Number Formatting</h3>
+      <p><strong>Currency:</strong> {{ price | currency:'USD':'symbol' }}</p>
+      <p><strong>Decimal (1.1-2):</strong> {{ decimalNumber | number:'1.1-2' }}</p>
+      <p><strong>Percent:</strong> {{ completionRate | percent }}</p>
+    </div>
+
+    <div class="pipe-card">
+      <h3>JSON Formatting</h3>
+      <p><strong>Original Object:</strong> [Object object]</p>
+      <p><strong>JSON Pipe:</strong></p>
+      <pre><code>{{ userObj | json }}</code></pre>
+    </div>
+  </div>
+</div>
+

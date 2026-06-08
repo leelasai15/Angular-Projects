@@ -1,0 +1,129 @@
+<!-- Custom Header -->
+<header class="app-header">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="app-logo"><i class="bi bi-bus-front-fill mr-2"></i>Antigravity Bus</div>
+    <nav class="d-flex">
+      <span class="opacity-75 cursor-pointer mr-4 text-white">Home</span>
+      <span class="opacity-75 cursor-pointer text-white">My Bookings</span>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Search Form Hero -->
+  <section class="mb-5">
+    <div class="search-hero text-center text-md-start">
+      <h1 class="search-title">Find Your Next Journey</h1>
+      <p class="text-white opacity-75 mb-4">
+        Compare bus schedules, check fare details, and book tickets instantly.
+      </p>
+
+      <div class="search-form-card">
+        <form class="row g-3 align-items-center" (ngSubmit)="onSearch()">
+          <!-- From Station -->
+          <div class="col-lg-3 col-md-5">
+            <div class="input-container">
+              <label class="input-label"><i class="bi bi-geo-alt-fill"></i> From</label>
+              <select class="input-field form-select shadow-none">
+                <option value="">Select From Station</option>
+                @for (location of locations$ | async; track location.locationId) {
+                  <option [value]="location.locationId">{{ location.locationName }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <!-- Swap Button -->
+          <div class="col-lg-1 col-md-2 text-center">
+            <div class="swap-btn-container">
+              <button type="button" class="swap-btn" title="Swap Stations">
+                <i class="bi bi-arrow-left-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- To Station -->
+          <div class="col-lg-3 col-md-5">
+            <div class="input-container">
+              <label class="input-label"><i class="bi bi-pin-map-fill"></i> To</label>
+              <select class="input-field form-select shadow-none">
+                <option value="">Select To Station</option>
+                @for (item of locations$ | async; track item.locationId) {
+                  <option [value]="item.locationId">{{ item.locationName }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <!-- Date -->
+          <div class="col-lg-3 col-md-6">
+            <div class="input-container">
+              <label class="input-label"><i class="bi bi-calendar-event-fill"></i> Date</label>
+              <input type="date" class="input-field shadow-none" />
+            </div>
+          </div>
+
+          <!-- Search Button -->
+          <div class="col-lg-2 col-md-6">
+            <button type="submit" class="btn btn-search w-100 h-100">
+              <i class="bi bi-search mr-2"></i> Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buses List
+  <section id="buses-list" class="mb-5">
+    <h2 class="section-title">Available Buses</h2>
+    <div class="row">
+      <div class="col-12">
+        <div class="bus-card">
+          <div class="bus-info-header d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+              <h5 class="bus-title mb-0">IntrCity SmartBus</h5>
+              <span class="bus-type">A/C Sleeper (2+1)</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="rating-badge"><i class="bi bi-star-fill"></i> 4.5</span>
+              <span class="rating-count">567 Ratings</span>
+            </div>
+          </div>
+          
+          <div class="p-4">
+            <div class="row align-items-center">
+              <div class="col-md-9 mb-3 mb-md-0">
+                <div class="bus-time-flow">
+                  <div class="time-box">
+                    <div class="time">19:00</div>
+                    <div class="label">Departure</div>
+                  </div>
+                  
+                  <div class="duration-connector">
+                    <span class="duration-text">13h 55m</span>
+                    <div class="duration-line"></div>
+                  </div>
+                  
+                  <div class="time-box">
+                    <div class="time">08:55</div>
+                    <div class="label">Arrival</div>
+                    <span class="badge bg-danger-subtle text-danger mt-1">18-Aug</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-3 d-flex justify-content-between align-items-center pl-md-4 border-start">
+                <div class="price-box">
+                  <div class="price-value">₹935</div>
+                  <div class="seats-left">8 Seats available</div>
+                </div>
+                <button class="btn btn-view-seats">View Seats</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+</div>

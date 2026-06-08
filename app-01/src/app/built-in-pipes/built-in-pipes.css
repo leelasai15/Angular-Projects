@@ -1,0 +1,54 @@
+.pipes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h2 {
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.pipe-card {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.pipe-card h3 {
+  margin-top: 0;
+  color: #3b82f6;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.pipe-card p {
+  color: #475569;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.pipe-card strong {
+  color: #1e293b;
+}
+
+pre {
+  background-color: #1e293b;
+  color: #a7f3d0;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+}

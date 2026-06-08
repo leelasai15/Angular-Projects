@@ -1,0 +1,26 @@
+<div class="communication-container">
+  <h2>Component Communication (Input / Output)</h2>
+  
+  <div class="parent-card">
+    <h3>Parent Component</h3>
+    
+    <div class="control-group">
+      <label for="parentMsg">Message for Child:</label>
+      <input type="text" id="parentMsg" [(ngModel)]="messageForChild" class="input-field" placeholder="Type a message...">
+    </div>
+
+    @if (receivedFromChild) {
+      <div class="message-box received">
+        <p><strong>Message received from Child:</strong></p>
+        {{ receivedFromChild }}
+      </div>
+    }
+    
+    <!-- Child Component -->
+    <app-child 
+      [parentMessage]="messageForChild" 
+      (childEvent)="receiveMessage($event)">
+    </app-child>
+  </div>
+</div>
+

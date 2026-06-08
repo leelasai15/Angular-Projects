@@ -1,0 +1,14 @@
+<div class="binding-container">
+  <h2>Data Binding</h2>
+
+  <div class="card">
+    <h3>Interpolation</h3>
+    <p [hidden]="isActive" class="interpolated-text">{{ interpolation }}</p>
+    
+    <div class="actions">
+      <button class="btn" (click)="onFun()">
+        {{ isActive ? 'Show' : 'Hide' }} Text
+      </button>
+    </div>
+  </div>
+</div>
