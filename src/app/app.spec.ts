@@ -14,10 +14,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render page title', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, BusBookingSystem');
+    expect(compiled.querySelector('app-search')).toBeTruthy();
+    expect(compiled.querySelector('app-seat-selection')).toBeTruthy();
+    expect(compiled.querySelector('app-booking-form')).toBeTruthy();
   });
 });

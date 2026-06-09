@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --brand: #2563eb;
+  --brand-dark: #1d4ed8;
+  --brand-light: #eff6ff;
+  --brand-shadow: rgba(37, 99, 235, 0.3);
+  --brand-shadow-soft: rgba(37, 99, 235, 0.15);
+  --text: #0f172a;
+  --muted: #64748b;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #f1f5f9;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  padding-left: 0.85rem;
+  border-left: 4px solid var(--brand);
+}

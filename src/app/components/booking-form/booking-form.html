@@ -1,0 +1,57 @@
+<div class="booking-pane h-100">
+  <h3 class="booking-title">Passenger Details</h3>
+
+  <form>
+    <div class="mb-3">
+      <label class="form-label" for="passengerName">Full Name</label>
+      <input
+        id="passengerName"
+        type="text"
+        class="form-control custom-input"
+        placeholder="Enter your name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="passengerEmail">Email</label>
+      <input
+        id="passengerEmail"
+        type="email"
+        class="form-control custom-input"
+        placeholder="you@example.com"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label" for="passengerPhone">Phone</label>
+      <input
+        id="passengerPhone"
+        type="tel"
+        class="form-control custom-input"
+        placeholder="+91 98765 43210"
+      />
+    </div>
+
+    <div class="summary-box">
+      <div class="summary-row">
+        <span>Route</span>
+        <strong>Nagpur → Pune</strong>
+      </div>
+      <div class="summary-row">
+        <span>Selected Seats</span>
+        <strong>1 (15)</strong>
+      </div>
+      <div class="summary-row">
+        <span>Price per seat</span>
+        <strong>INR 935</strong>
+      </div>
+      <div class="divider"></div>
+      <div class="summary-row total-row">
+        <span>Total Amount</span>
+        <strong>INR 935</strong>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-book-now mt-4">Confirm Booking</button>
+  </form>
+</div>

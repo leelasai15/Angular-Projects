@@ -1,0 +1,74 @@
+<section class="search-section">
+  <h1 class="page-title text-center">Bus Booking System</h1>
+
+  @if (loadError) {
+    <p class="text-center load-error mb-3">{{ loadError }}</p>
+  }
+
+  @if (locations$ | async; as locations) {
+    <form class="search-form shadow-lg">
+      <div class="row g-3 align-items-end w-100">
+        <div class="col-lg-3 col-md-6">
+          <label class="field-label" for="fromStation">
+            <i class="bi bi-geo-alt-fill"></i> From
+          </label>
+          <div class="select-field">
+            <select id="fromStation" name="fromStation" [(ngModel)]="fromLoc" class="station-select">
+              <option value="" disabled selected hidden>Choose city</option>
+              @for (location of locations; track location.locationId) {
+                <option [value]="location.locationId">
+                  {{ location.locationName }} ({{ location.code }})
+                </option>
+              }
+            </select>
+            <i class="bi bi-chevron-down select-chevron" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="col-lg-1 col-md-12 text-center">
+          <button type="button" class="swap-btn" title="Swap stations">
+            <i class="bi bi-arrow-left-right"></i>
+          </button>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <label class="field-label" for="toStation">
+            <i class="bi bi-pin-map-fill"></i> To
+          </label>
+          <div class="select-field">
+            <select id="toStation" class="station-select">
+              <option value="" disabled selected hidden>Choose city</option>
+              @for (location of locations; track location.locationId) {
+                <option [value]="location.locationId">
+                  {{ location.locationName }} ({{ location.code }})
+                </option>
+              }
+            </select>
+            <i class="bi bi-chevron-down select-chevron" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <label class="field-label" for="travelDate">
+            <i class="bi bi-calendar-event-fill"></i> Date
+          </label>
+          <div class="select-field">
+            <input
+              id="travelDate"
+              type="date"
+              class="station-select date-input"
+              [min]="minDate"
+              [value]="today"
+            />
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <button type="submit" class="btn btn-search w-100">
+            <i class="bi bi-search me-2"></i>Search
+          </button>
+        </div>
+      </div>
+    </form>
+  }
+</section>
