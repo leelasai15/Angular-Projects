@@ -1,19 +1,19 @@
 <section class="search-section">
   <h1 class="page-title text-center">Bus Booking System</h1>
-
+  <!-- 
   @if (loadError) {
     <p class="text-center load-error mb-3">{{ loadError }}</p>
-  }
+  } -->
 
   @if (locations$ | async; as locations) {
-    <form class="search-form shadow-lg">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form shadow-lg">
       <div class="row g-3 align-items-end w-100">
         <div class="col-lg-3 col-md-6">
           <label class="field-label" for="fromStation">
             <i class="bi bi-geo-alt-fill"></i> From
           </label>
           <div class="select-field">
-            <select id="fromStation" name="fromStation" [(ngModel)]="fromLoc" class="station-select">
+            <select id="fromStation" formControlName="fromLoc" class="station-select">
               <option value="" disabled selected hidden>Choose city</option>
               @for (location of locations; track location.locationId) {
                 <option [value]="location.locationId">
@@ -32,11 +32,9 @@
         </div>
 
         <div class="col-lg-3 col-md-6">
-          <label class="field-label" for="toStation">
-            <i class="bi bi-pin-map-fill"></i> To
-          </label>
+          <label class="field-label" for="toStation"> <i class="bi bi-pin-map-fill"></i> To </label>
           <div class="select-field">
-            <select id="toStation" class="station-select">
+            <select id="toStation" formControlName="toLoc" class="station-select">
               <option value="" disabled selected hidden>Choose city</option>
               @for (location of locations; track location.locationId) {
                 <option [value]="location.locationId">
@@ -55,10 +53,10 @@
           <div class="select-field">
             <input
               id="travelDate"
+              formControlName="travelDate"
               type="date"
               class="station-select date-input"
               [min]="minDate"
-              [value]="today"
             />
           </div>
         </div>
