@@ -1,9 +1,9 @@
 <section class="search-section">
   <h1 class="page-title text-center">Bus Booking System</h1>
-  <!-- 
+  
   @if (loadError) {
     <p class="text-center load-error mb-3">{{ loadError }}</p>
-  } -->
+  }
 
   @if (locations$ | async; as locations) {
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form shadow-lg">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-lg-1 col-md-12 text-center">
-          <button type="button" class="swap-btn" title="Swap stations">
+          <button type="button" class="swap-btn" (click)="swapStations()" title="Swap stations">
             <i class="bi bi-arrow-left-right"></i>
           </button>
         </div>
@@ -62,11 +62,16 @@
         </div>
 
         <div class="col-lg-2 col-md-6">
-          <button type="submit" class="btn btn-search w-100">
+          <button type="submit" class="btn btn-search w-100" [disabled]="searchForm.invalid">
             <i class="bi bi-search me-2"></i>Search
           </button>
         </div>
       </div>
+
+      @if (searchForm.errors?.['sameLocation']) {
+        <p class="text-center load-error mt-3 mb-0">From and To locations cannot be the same.</p>
+      }
     </form>
   }
 </section>
+

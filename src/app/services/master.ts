@@ -13,14 +13,12 @@ export class Master {
   constructor(private http: HttpClient) {}
 
   getLocations(): Observable<Locations[]> {
-    return this.http.get<Locations[]>(`${this.baseUrl}/GetBusLocations`);
+    return this.http.get<Locations[]>(`${this.baseUrl}/GetBusLocations`).pipe(
+      map((locations) =>
+        locations.filter(
+          (location) => location.locationName?.trim(),
+        ),
+      ),
+    );
   }
-  
 }
-// .pipe(
-//   map((locations) =>
-//     locations.filter(
-//       (location) => location.locationName?.trim(),
-//     ),
-//   ),
-// )

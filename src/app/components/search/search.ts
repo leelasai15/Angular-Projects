@@ -3,7 +3,13 @@ import { Component, inject } from '@angular/core';
 import { Observable, catchError, of, shareReplay } from 'rxjs';
 import { Locations } from '../../models/locations';
 import { Master } from '../../services/master';
-import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms'; 
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms'; 
+
+export const sameLocationValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const fromLoc = control.get('fromLoc')?.value;
+  const toLoc = control.get('toLoc')?.value;
+  return fromLoc && toLoc && fromLoc === toLoc ? { sameLocation: true } : null;
+};
 
 @Component({
   selector: 'app-search',
@@ -18,17 +24,38 @@ export class Search {
   protected readonly minDate = toDateInputValue(new Date());
   protected readonly today = this.minDate;
 
+  protected loadError: string | null = null;
+
   protected readonly locations$: Observable<Locations[]> = this.master
-    .getLocations();
+    .getLocations()
+    .pipe(
+      catchError(() => {
+        this.loadError =
+          'Failed to load stations. Stop ng serve and run it again.';
+        return of([] as Locations[]);
+      }),
+      shareReplay(1),
+    );
 
   searchForm = new FormGroup({
-    fromLoc: new FormControl<string>('', { nonNullable: true }),
-    toLoc: new FormControl<string>('', { nonNullable: true }),
-    travelDate: new FormControl<string>(this.today, { nonNullable: true }),
-  });
+    fromLoc: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+    toLoc: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+    travelDate: new FormControl<string>(this.today, { nonNullable: true, validators: [Validators.required] }),
+  }, { validators: sameLocationValidator });
 
   onSubmit() {
-    console.log('Search Form Submitted:', this.searchForm.value);
+    if (this.searchForm.valid) {
+      console.log('Search Form Submitted:', this.searchForm.value);
+    }
+  }
+
+  swapStations() {
+    const fromLoc = this.searchForm.get('fromLoc')?.value;
+    const toLoc = this.searchForm.get('toLoc')?.value;
+    this.searchForm.patchValue({
+      fromLoc: toLoc,
+      toLoc: fromLoc
+    });
   }
 
 }
@@ -39,12 +66,3 @@ function toDateInputValue(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
-
-// .pipe(
-//   catchError(() => {
-//     this.loadError =
-//       'Failed to load stations. Stop ng serve and run it again.';
-//     return of([] as Locations[]);
-//   }),
-//   shareReplay(1),
-// );
